@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -20,6 +21,8 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
+    private Object persistence;
+    private Object jpaPerson;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -30,6 +33,15 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        EntityManagerFactory emf;
+        emf = persistence.CreateEntityManagerFactory("JpaExercisePU");
+        
+        Person dude = new Person();
+        dude.setFirstName("rahul");
+        
+        PersonJpaController JpaPerson = new PersonJpaController (emf);
+        
+        jpaPerson.Create(dude);
     }    
     
 }
